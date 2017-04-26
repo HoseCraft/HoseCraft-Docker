@@ -1,0 +1,14 @@
+FROM ubuntu:latest
+
+RUN apt-get -y update
+RUN apt-get -y install default-jre wget
+
+# Download latest
+RUN wget -q http://hub.thomas-edwards.me/jenkins/job/HoseCraft/lastSuccessfulBuild/artifact/target/HoseCraft.jar
+
+WORKDIR /data
+VOLUME /data
+
+EXPOSE 25565
+
+CMD java -jar /HoseCraft.jar
